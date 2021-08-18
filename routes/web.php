@@ -22,11 +22,9 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/registration',function()
+
+Route::get('/',function()
 {
     return view('auth.register');
 });
@@ -37,6 +35,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/home', [UserController::c
 Route::middleware(['auth:sanctum', 'verified'])->get('/edit', [UserController::class,'edit'])->name('editProfile');
 Route::middleware(['auth:sanctum', 'verified'])->post('/basic', [UserController::class,'basic'])->name('basicInfo');
 Route::middleware(['auth:sanctum', 'verified'])->post('/blood', [UserController::class,'blood'])->name('bloodInfo');
+Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware(['auth:sanctum', 'verified'])
+->name('logout');
+Route::middleware(['auth:sanctum', 'verified'])->get('/request', [UserController::class,'request'])->name('request');
+Route::middleware(['auth:sanctum', 'verified'])->get('/allrequest', [UserController::class,'allRequest'])->name('allRequest');
+Route::middleware(['auth:sanctum', 'verified'])->post('/saverequest', [UserController::class,'saveRequest'])->name('saveRequest');
+
 
 Route::prefix('admin')->name('admin.')->group(function()
 {
@@ -80,7 +84,9 @@ Route::prefix('admin')->name('admin.')->group(function()
         return view('admin.add_admin');
     })->name('addAdmins')->middleware('auth:admin');
     Route::post('/store_admins',[AdminController::class,'storeAdmin'])->name('store_admin')->middleware('auth:admin');
-    
+
+    Route::get('/allRequest', [AdminController::class,'allRequest'])->name('allRequest')->middleware('auth:admin');
+
 });
 
 Route::view('/all','admin.dashboard');

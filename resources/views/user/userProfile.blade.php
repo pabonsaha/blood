@@ -120,8 +120,11 @@
                                     </h5>
                                     
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                <li class="nav-item d-flex">
+                                    <a class="nav-link active" style="color: blue" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                    <a style="color: rgb(22, 240, 131)" class="nav-link" id="home-tab" data-toggle="tab" href="{{route('allRequest')}}" role="tab" aria-controls="home" aria-selected="true">All Request</a>
+
+                                    <a style="color: orangered" class="nav-link" id="home-tab" data-toggle="tab" href="{{route('request')}}" role="tab" aria-controls="home" aria-selected="true">Send Request For Blood</a>
                                 </li>
                                 
                             </ul>
@@ -129,6 +132,9 @@
                     </div>
                     <div class="col-md-2">
                         <a href="{{route('editProfile')}}"  class="profile-edit-btn">Edit Profile</a>
+                    </div>
+                    <div class="col-md-2">
+                        <a style="color: rgb(241, 32, 32)" href="{{route('logout')}}"  class="profile-edit-btn">Logout</a>
                     </div>
                 </div>
                 <div class="row">

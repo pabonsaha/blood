@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 
 
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
+
 
 class AdminController extends Controller
 {
@@ -46,6 +48,16 @@ class AdminController extends Controller
             return redirect()->route('admin.allAdmins');
 
         }
+    }
+
+    public function allRequest()
+    {
+        $messages = DB::table('users')
+        ->join('request_bloods', 'users.id', '=', 'request_bloods.user_id')
+        ->select('users.*', 'request_bloods.message', 'request_bloods.created_at')
+        ->orderByDesc('request_bloods.id')
+        ->get();
+        return view('admin.allRequest',compact('messages'));
     }
 
 }      

@@ -16,7 +16,7 @@
                 <table class="table table-bordered yajra-datatable">
                     <thead>
                         <tr>
-                            
+                            {{-- <th>ID</th> --}}
                             <th>Name</th>
                             <th>Blood Group</th>
                             <th>Phone One</th>
